@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>网上书店后台管理系统 - 书籍信息录入</title>
+  <style>
+    /* 重置默认样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font: 12px "SimSun", "宋体", "Arial Narrow";
+      color: #333;
+    }
+
+    body {
+      background: #fff;
+    }
+
+    a {
+      color: #666;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #3C5E7C;
+      font-size: 13px;
+      font-weight: bolder;
+    }
+
+    /* 头部样式 */
+    .header {
+      width: 1000px;
+      height: 80px;
+      background: url("logo_bookshop.gif") no-repeat;
+      /* 按实际路径调整 */
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .header #welcome {
+      color: black;
+      position: absolute;
+      right: 20px;
+      top: 48px;
+    }
+
+    /* 主体容器 */
+    .main {
+      width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    /* 左侧菜单 */
+    .main .left {
+      width: 200px;
+      float: left;
+    }
+
+    .main .left .menu-top {
+      text-align: center;
+    }
+
+    .main .left .menu-top img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .main .left ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .main .left ul li {
+      line-height: 40px;
+      border-bottom: 1px dashed #27A2CF;
+      text-align: center;
+      background: url("icon.png") no-repeat 50px -874px;
+      /* 按实际路径调整 */
+    }
+
+    /* 右侧内容 */
+    .main .right {
+      width: 790px;
+      float: left;
+      padding: 10px;
+    }
+
+    .main .right h3 {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* 表单表格 */
+    .form-table {
+      width: 100%;
+      border: 1px solid #CAF2FF;
+      background-color: #fff;
+      border-collapse: collapse;
+    }
+
+    .form-table tr {
+      height: 40px;
+    }
+
+    .form-table tr td {
+      border: 1px solid #B8D3F1;
+      padding: 0 10px;
+      text-align: left;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: 3px;
+      border: 1px solid #B8D3F1;
+    }
+
+    .form-input {
+      width: 200px;
+    }
+
+    .form-select {
+      width: 150px;
+    }
+
+    .form-textarea {
+      width: 400px;
+      height: 80px;
+    }
+
+    .form-button {
+      padding: 4px 10px;
+      margin-right: 10px;
+      background-color: #E4F1FA;
+      border: 1px solid #B8D3F1;
+      cursor: pointer;
+    }
+
+    /* 底部样式 */
+    .footer {
+      width: 1000px;
+      height: 48px;
+      background: url("bottom_bookshop.gif") no-repeat;
+      /* 按实际路径调整 */
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+<div class="header">
+  <span id="welcome">欢迎</span>
+</div>
+<div class="main">
+  <div class="left">
+    <div class="menu-top">
+      <img src="menu_book.gif" alt="菜单顶部图">
+      <!-- 按实际路径调整 -->
+      <img src="menu_topline.gif" alt="菜单分割线">
+      <!-- 按实际路径调整 -->
+    </div>
+    <ul>
+      <li><a href="#">书籍信息管理</a></li>
+      <li><a href="#">神秘模块</a></li>
+      <li><a href="#">神秘模块</a></li>
+      <li><a href="#">神秘模块</a></li>
+      <li><a href="#">神秘模块</a></li>
+      <li><a href="#">神秘模块</a></li>
+    </ul>
+  </div>
+  <div class="right">
+    <h3>书籍添加</h3>
+    <form id="bookForm" onsubmit="return validateForm()">
+      <table class="form-table">
+        <tr>
+          <td><label>书号：</label></td>
+          <td><input type="text" name="bookId" class="form-input" id="bookId"></td>
+        </tr>
+        <tr>
+          <td><label>书名：</label></td>
+          <td><input type="text" name="bookTitle" class="form-input" id="bookTitle"></td>
+        </tr>
+        <tr>
+          <td><label>作者：</label></td>
+          <td><input type="text" name="author" class="form-input" id="author"></td>
+        </tr>
+        <tr>
+          <td><label>出版社：</label></td>
+          <td>
+            <select name="publisher" class="form-select" id="publisher">
+              <option value="">--请选择--</option>
+              <option value="tsinghua">清华大学出版社</option>
+              <option value="pku">北京大学出版社</option>
+              <option value="capital">首都师范大学出版社</option>
+              <option value="zju">？？？</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label>出版日期：</label></td>
+          <td><input type="text" name="publishDate" class="form-input" id="publishDate"></td>
+        </tr>
+        <tr>
+          <td><label>价格：</label></td>
+          <td><input type="text" name="price" class="form-input" id="price"></td>
+        </tr>
+        <tr>
+          <td><label>库存位置：</label></td>
+          <td><input type="text" name="stockPlace" class="form-input" id="stockPlace"></td>
+        </tr>
+        <tr>
+          <td><label>类别：</label></td>
+          <td>
+            <input type="radio" name="category" value="普通" class="form-radio" id="catNormal"> 普通
+            <input type="radio" name="category" value="新书" class="form-radio" id="catNew"> 新书
+            <input type="radio" name="category" value="精品" class="form-radio" id="catPremium"> 精品
+          </td>
+        </tr>
+        <tr>
+          <td><label>内容简介：</label></td>
+          <td><textarea name="description" class="form-textarea" id="description"></textarea></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <input type="submit" value="保存" class="form-button">
+            <input type="reset" value="重置" class="form-button">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<div class="footer"></div>
+
+<script>
+  function validateForm() {
+    const bookId = document.getElementById('bookId').value.trim();
+    const bookTitle = document.getElementById('bookTitle').value.trim();
+    const author = document.getElementById('author').value.trim();
+    const publisher = document.getElementById('publisher').value;
+    const price = document.getElementById('price').value.trim();
+    const category = document.querySelectorAll('input[name="category"]');
+
+    if (!bookId) { alert('书号不能为空'); return false; }
+    if (!bookTitle) { alert('书名不能为空'); return false; }
+    if (!author) { alert('作者不能为空'); return false; }
+    if (!publisher) { alert('请选择出版社'); return false; }
+    if (!price || isNaN(parseFloat(price))) {
+      alert(price ? '价格必须为数字' : '价格不能为空');
+      return false;
+    }
+    let catSelected = false;
+    category.forEach(radio => { if (radio.checked) catSelected = true; });
+    if (!catSelected) { alert('请选择书籍类别'); return false; }
+    alert('表单验证通过，数据已保存');
+    return true;
+  }
+</script>
+</body>
+
+</html>
